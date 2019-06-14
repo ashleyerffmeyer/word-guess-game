@@ -15,6 +15,28 @@ document.onkeyup = function (event) {
     var userGuess = event.key;
 
 }
+// Use a function similar to this to check if letter input by user matches letters of the current word blanks.
+function vowelChecker(x) {
+    var firstChar = x.toLowerCase().charAt(0);
+    if (firstChar === 'a' || firstChar === 'e' || firstChar === 'i' || firstChar === 'o' || firstChar === 'u') {
+        console.log('The 1st letter is a vowel!');
+    }
+    else {
+        console.log('The 1st letter is not a vowel!');
+
+    }
+}
+
+// If the user input matches letters of work blank, then update values with a function similar to this
+if ((userGuess === "r" && computerGuess === "s") ||
+    (userGuess === "s" && computerGuess === "p") ||
+    (userGuess === "p" && computerGuess === "r")) {
+    wins++;
+} else if (userGuess === computerGuess) {
+    ties++;
+} else {
+    losses++;
+}
 
 
 // Display the user wins, current word letters, number of guesses remaining, and letters already guessed.
