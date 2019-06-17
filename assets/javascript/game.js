@@ -1,10 +1,10 @@
 
 
 // Create variables that hold references to the places in the HTML where we want to display things.
-var scoreText = document.getElementById("score");
+/**var scoreText = document.getElementById("score");
 var currentWordBlanksText = document.getElementById("current-word-blanks");
 var guessesText = document.getElementById("guesses");
-var guessedLettersText = document.getElementById("guessed-letters-list");
+var guessedLettersText = document.getElementById("guessed-letters-list");**/
 
 //Create variables associated with hangman words, amount of letters each word has, etc.
 var friends = ['Ross', 'Rachel', 'Monica', 'Phoebe', 'Chandler', 'Joey'];
@@ -37,17 +37,10 @@ function startGame() {
         answer.push("_");
     }
 
-    console.log(selectedFriend);
-    console.log(answer);
-    console.log(lettersInFriend);
-    console.log(numOfBlanks);
-
-    /**document.getElementById("score").innerHTML = wins;**/
+    document.getElementById("score").innerHTML = wins;
     document.getElementById("current-word-blanks").innerHTML = answer.join(" ");
     document.getElementById("guesses").innerHTML = guesses;
     document.getElementById("guessed-letters-list").innerHTML = guessedLetters;
-
-
 }
 
 startGame();
@@ -60,7 +53,6 @@ function compareLetters(input) {
             isLetterInWord = true;
         }
     }
-
     if (isLetterInWord) {
         for (var i = 0; i < numOfBlanks; i++) {
             if (lettersInFriend == input) {
@@ -78,7 +70,6 @@ document.onkeyup = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
     compareLetters(userGuess);
 }
-
 
 //This function finshes the game!
 function endGame() {
