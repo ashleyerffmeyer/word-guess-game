@@ -60,8 +60,10 @@ function compareLetters(input) {
             }
         }
     }
-    else guessedLetters.push(input);
-    guesses--;
+    else {
+        guessedLetters.push(input);
+        guesses--;
+    }
 }
 
 // This function is run whenever the user presses a key.
