@@ -22,7 +22,6 @@ function startGame() {
     answer = [];
     guesses = 12;
     guessedLetters = [];
-    wins = 0;
 
     //for loop that resets the number of blanks needed
     for (var i = 0; i < numOfBlanks; i++) {
@@ -33,11 +32,6 @@ function startGame() {
     document.getElementById("current-word-blanks").innerHTML = answer.join(" ");
     document.getElementById("guesses").innerHTML = guesses;
     document.getElementById("guessed-letters-list").innerHTML = guessedLetters;
-
-    console.log(wins)
-    console.log(answer.join(" "));
-    console.log(guesses);
-    console.log(guessedLetters);
 }
 
 //This function will compare letters from the user to letters in the answer
@@ -49,10 +43,9 @@ function compareLetters(input) {
         }
     }
     if (isLetterInWord) {
-        for (var i = 0; i < numOfBlanks; i++) {
+        for (var i = 0; i <= numOfBlanks; i++) {
             if (lettersInFriend[i] == input) {
                 answer[i] = input;
-                document.getElementById("current-word-blanks").innerHTML = answer.join();
             }
         }
     }
@@ -66,10 +59,10 @@ function compareLetters(input) {
 
 //This function finshes the game!
 function endGame() {
+    document.getElementById("current-word-blanks").innerHTML = answer.join(" ");
 
-    if (lettersInFriend === answer) {
-        wins++
-        alert("You Won!");
+    if (lettersInFriend.toString() == answer.toString()) {
+        wins++;
         document.getElementById("score").innerHTML = wins;
         startGame();
     }
@@ -79,7 +72,9 @@ function endGame() {
     }
 }
 
+// Run this function to start the game
 startGame();
+
 // This function is run whenever the user presses a key
 
 document.onkeyup = function (event) {
