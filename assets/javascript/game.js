@@ -1,13 +1,5 @@
-
-
-// Create variables that hold references to the places in the HTML where we want to display things.
-/**var scoreText = document.getElementById("score");
-var currentWordBlanksText = document.getElementById("current-word-blanks");
-var guessesText = document.getElementById("guesses");
-var guessedLettersText = document.getElementById("guessed-letters-list");**/
-
 //Create variables associated with hangman words, amount of letters each word has, etc.
-var friends = ['Ross', 'Rachel', 'Monica', 'Phoebe', 'Chandler', 'Joey'];
+var friends = ['ross', 'rachel', 'monica', 'phoebe', 'chandler', 'joey'];
 var selectedFriend = "";
 var lettersInFriend = [];
 var numOfBlanks = 0;
@@ -41,42 +33,43 @@ function startGame() {
     document.getElementById("current-word-blanks").innerHTML = answer.join(" ");
     document.getElementById("guesses").innerHTML = guesses;
     document.getElementById("guessed-letters-list").innerHTML = guessedLetters;
-}
 
-startGame();
+    console.log(wins)
+    console.log(answer.join(" "));
+    console.log(guesses);
+    console.log(guessedLetters);
+}
 
 //This function will compare letters from the user to letters in the answer
 function compareLetters(input) {
     var isLetterInWord = false;
     for (var i = 0; i < numOfBlanks; i++) {
-        if (lettersInFriend == input) {
+        if (lettersInFriend.indexOf(input) > -1) {
             isLetterInWord = true;
         }
     }
     if (isLetterInWord) {
         for (var i = 0; i < numOfBlanks; i++) {
-            if (lettersInFriend == input) {
+            if (lettersInFriend[i] == input) {
                 answer[i] = input;
+                document.getElementById("current-word-blanks").innerHTML = answer.join();
             }
         }
     }
     else {
-        guessedLetters.push(input);
         guesses--;
+        guessedLetters.push(input);
+        document.getElementById("guesses").innerHTML = guesses;
+        document.getElementById("guessed-letters-list").innerHTML = guessedLetters;
     }
-}
-
-// This function is run whenever the user presses a key.
-document.onkeyup = function (event) {
-    //Determines which key was pressed
-    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    compareLetters(userGuess);
 }
 
 //This function finshes the game!
 function endGame() {
-    if (lettersInFriend.toString() == answer.toString()) {
+
+    if (lettersInFriend === answer) {
         wins++
+        alert("You Won!");
         document.getElementById("score").innerHTML = wins;
         startGame();
     }
@@ -84,4 +77,14 @@ function endGame() {
         alert("You Lost!");
         startGame();
     }
+}
+
+startGame();
+// This function is run whenever the user presses a key
+
+document.onkeyup = function (event) {
+    //Determines which key was pressed
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    compareLetters(userGuess);
+    endGame();
 }
