@@ -46,9 +46,10 @@ function compareLetters(input) {
         }
     }
     if (isLetterInWord) {
-        for (var i = 0; i <= numOfBlanks; i++) {
+        for (var i = 0; i < numOfBlanks; i++) {
             if (lettersInFriend[i] == input) {
                 answer[i] = input;
+
             }
         }
     }
